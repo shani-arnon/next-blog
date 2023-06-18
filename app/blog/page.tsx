@@ -3,18 +3,22 @@ export async function loadPosts() {
     return res.json();
 }
 
+type Post = {
+    id: string
+    title: string
+};
+
 export default async function BlogPage() {
     const posts = await loadPosts();
     return (
         <div>
             <h1>Blog</h1>
             <ul>
-                {posts.map((post: any) => (
+                {posts.map((post: Post) => (
                     <>
                         <li key={post.id}>
                             <a href={`/blog/${post.id}`}>{post.title}</a>
                         </li>
-
                     </>
                 ))}
             </ul>

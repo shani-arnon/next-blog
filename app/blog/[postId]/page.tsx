@@ -1,4 +1,5 @@
-import Comment from "@/app/(components)/Comment";
+import { Suspense } from "react";
+import CommentList from "@/app/(components)/CommentList";
 
 interface Post {
     params: {
@@ -17,12 +18,14 @@ export async function loadPostDetails(postId: PostDetails) {
 export default async function PostPage({ params: { postId } }: Post) {
     // @ts-ignore
     const post = await loadPostDetails(postId);
-    ; return (
+    return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg" >
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{post.title.toUpperCase()}</div>
                 <p className="text-gray-700 text-base">{post.body}</p>
-                <Comment postId={post.id} />
+                <Suspense fallback={<p>Loading comments..</p>}>
+                    <CommentList postId={post.id} />
+                </Suspense>
             </div>
         </div>
     )
