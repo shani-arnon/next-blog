@@ -1,3 +1,5 @@
+import Comment from "@/app/(components)/Comment";
+
 interface Post {
     params: {
         postId: string
@@ -20,6 +22,7 @@ export default async function PostPage({ params: { postId } }: Post) {
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{post.title.toUpperCase()}</div>
                 <p className="text-gray-700 text-base">{post.body}</p>
+                <Comment postId={post.id} />
             </div>
         </div>
     )
