@@ -30,8 +30,7 @@ export default function Comment({ postId }: Comment) {
                 <ul>
                     {comments.map((c: any) => (
                         <div key={c.id}>
-                            <h2>Comments:</h2>
-                            <li >
+                            <li>
                                 <h3>{c.name} - {c.email}</h3>
                                 <p>{c.body}</p>
                             </li>
